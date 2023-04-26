@@ -1,0 +1,4 @@
+[
+  "tests/test_check_email.py::test_known_email",
+  "tests/test_check_email.py::test_unknown_email"
+]

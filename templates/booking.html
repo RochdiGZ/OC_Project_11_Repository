@@ -13,5 +13,14 @@
         <label for="places">How many places?</label><input type="number" name="places" id="places"/>
         <button type="submit">Book</button>
     </form>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul style="list-style-type: none">
+              {% for message in messages %}
+                <li style="color:#f52800">{{message}}</li>
+              {% endfor %}
+            </ul>
+        {% endif%}
+    {% endwith %}
 </body>
 </html>

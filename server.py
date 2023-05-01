@@ -29,10 +29,19 @@ def index():
     return render_template('index.html')
 
 
+# Update show_summary function
 @app.route('/show_summary', methods=['POST'])
 def show_summary():
-    club = [club for club in clubs if club['email'] == request.form['email']][0]
-    return render_template('welcome.html', club=club, competitions=competitions, current_date=current_date)
+    try:
+        club = [club for club in clubs if club['email'] == request.form['email']][0]
+        return render_template('welcome.html', club=club, competitions=competitions, current_date=current_date)
+    except IndexError:
+        if request.form['email'] == '':
+            message = "Email is required. Please enter your correct email !"
+        else:
+            message = "The email " + request.form['email'] + " was not found. Please enter your correct email !"
+        flash(message)
+        return redirect(url_for('index')), 302
 
 
 @app.route('/book/<competition>/<club>')
@@ -46,6 +55,7 @@ def book(competition, club):
         return render_template('welcome.html', club=club, competitions=competitions, current_date=current_date)
 
 
+# Update purchase_places function
 @app.route('/purchase_places', methods=['POST'])
 def purchase_places():
     competition = [c for c in competitions if c['name'] == request.form['competition']][0]

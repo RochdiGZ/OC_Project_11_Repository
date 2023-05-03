@@ -1,4 +1,0 @@
-{
-  "tests/test_clubs_points.py::test_clubs_points_display": true,
-  "tests/test_clubs_points.py::test_with_no_data": true
-}

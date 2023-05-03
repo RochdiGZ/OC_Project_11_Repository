@@ -1,17 +1,25 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>GUDLFT Registration</title>
-</head>
-<body>
-    <h1>Welcome to the GUDLFT Registration Portal!</h1>
-    Please enter your secretary email to continue:
-    <form action="show_summary" method="post">
-        <label for="email">Email:</label>
-        <input type="email" name="email" id="email"/>
-        <button type="submit">Enter</button>
-    </form>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>GUDLFT Registration</title>
+    </head>
+    <body>
+        <h1>Welcome to the GUDLFT Registration Portal!</h1>
+        <a href="{{ url_for('show_clubs_points') }}">Click here to display the points board for each club</a>
+        <p>Please enter your secretary email to continue:</p>
+        <form action="show_summary" method="post">
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email"/>
+            <button type="submit">Enter</button>
+        </form>
+    </body>
+
+    {% for message in get_flashed_messages() %}
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif %}
+    {% endfor %}
+
 </html>

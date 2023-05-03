@@ -1,0 +1,56 @@
+nav {
+    align-items: center;
+    background-color: violet;
+    display: flex;
+    height: 25%;
+}
+.nav_link {
+    display: none;
+    list-style: none;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 25%;
+    text-align: left;
+    display: inline-flex;
+    /* flex-direction: column; */
+}
+p, li, a, h1, h2, h3, thead, tbody {
+    margin-left: 10px;
+    margin-right: 5px;
+}
+img, label {
+    margin-left: 5px;
+}
+body {
+    background: pink;
+}
+table, td {
+    border: 2px solid red;
+    /* border-collapse: collapse; */
+    table-layout: auto;
+    width: 50%;
+}
+thead {
+    background-color: orange;
+    color: black;
+}
+tbody {
+    background-color: white;
+}
+thead, tbody {
+     text-align: center;
+}
+h1, label, li, tbody {
+    color: blue;
+}
+h2, input {
+    color: green;
+}
+h3, button {
+    color: red;
+}
+p, a, label, input, button, li, thead, tbody {
+    font-weight: bold;
+    font-size: 20;
+}

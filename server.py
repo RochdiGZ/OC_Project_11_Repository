@@ -29,7 +29,6 @@ def index():
     return render_template('index.html')
 
 
-# Update show_summary function
 @app.route('/show_summary', methods=['POST'])
 def show_summary():
     try:
@@ -55,19 +54,24 @@ def book(competition, club):
         return render_template('welcome.html', club=club, competitions=competitions, current_date=current_date)
 
 
-# Update purchase_places function
+# Update Purchase_places function to deduct points used when booking places
 @app.route('/purchase_places', methods=['POST'])
 def purchase_places():
     competition = [c for c in competitions if c['name'] == request.form['competition']][0]
     club = [c for c in clubs if c['name'] == request.form['club']][0]
     places_required = int(request.form['places'])
-    club_points = int(club['points'])
+
     if competition['date'] < current_date:
         flash("Sorry! This competition is over.")
         return render_template('welcome.html', club=club, competitions=competitions, current_date=current_date)
-    elif places_required > club_points:
-        flash("Sorry, your club doesn't have enough points!")
-        return render_template('booking.html', club=club, competition=competition, current_date=current_date)
+    else:
+        if places_required > int(club['points']):
+            flash("You don't have enough points.")
+            return render_template('booking.html', club=club, competition=competition, current_date=current_date)
+        elif places_required > 12:
+            flash("You can't book more than 12 places in a competition.")
+            return render_template('booking.html', club=club, competition=competition, current_date=current_date)
+
     competition['numberOfPlaces'] = int(competition['numberOfPlaces']) - places_required
     club['points'] = int(club['points']) - places_required
     flash(f"Great! You have booked {places_required} places for '{competition['name']}' competition.")

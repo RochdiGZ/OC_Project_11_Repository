@@ -5,14 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/responsive.css') }}" />
     <link rel="icon" href="{{ url_for('static', filename='images/logo.ico') }}">
     <title>Clubs points</title>
 </head>
 <body>
-    <h1>GUDLFT</h1>
+    <nav>
+        <img class="logo" src="{{ url_for('static', filename='images/logo.png') }}" alt="GUDLFT Logo">
+        <h1>Board of available points for each club</h1>
+
+        <ul class="nav_link">
+            <li>
+                <a href="{{ url_for('index') }}">Home</a>
+            </li>
+            <li>
+                <a href="{{ url_for('show_clubs_points') }}">Board</a>
+            </li>
+            <li>
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </li>
+        </ul>
+
+    </nav>
+    <h1>
+        GÜDLFT organizes strength competitions in North America and Australia for clubs
+    </h1>
     <h2>Clubs points</h2>
     {% if all_clubs|length < 1 %}
-        <p>Sorry, no clubs to display</p>
+        <h3>Sorry! No clubs to display</h3>
     {% else %}
         <table>
             <thead class="table_head">

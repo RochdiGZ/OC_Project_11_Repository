@@ -3,12 +3,31 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/responsive.css') }}" />
+        <link rel="icon" href="{{ url_for('static', filename='images/logo.ico') }}">
         <title>GUDLFT Registration</title>
     </head>
     <body>
-        <h1>Welcome to the GUDLFT Registration Portal!</h1>
-        <a href="{{ url_for('show_clubs_points') }}">Click here to display the points board for each club</a>
-        <p>Please enter your secretary email to continue:</p>
+        <nav>
+            <img class="logo" src="{{ url_for('static', filename='images/logo.png') }}" alt="GUDLFT Logo">
+            <h1>Welcome to the GUDLFT Registration Portal!</h1>
+
+            <ul class="nav_link">
+                <li>
+                    <a href="{{ url_for('index') }}">Home</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('show_clubs_points') }}">Board</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                </li>
+            </ul>
+
+        </nav>
+
+        <h2>Please enter your secretary email to continue:</h2>
         <form action="show_summary" method="post">
             <label for="email">Email:</label>
             <input type="email" name="email" id="email"/>
@@ -18,7 +37,7 @@
 
     {% for message in get_flashed_messages() %}
         {% if message %}
-            <p>{{ message }}</p>
+            <h3>{{ message }}</h3>
         {% endif %}
     {% endfor %}
 

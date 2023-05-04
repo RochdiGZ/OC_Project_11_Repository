@@ -52,7 +52,7 @@ def book(competition, club):
         return render_template('welcome.html', club=club, competitions=competitions)
 
 
-# Update purchase_places function to book a maximum of 12 places in a competition
+# Update purchase_places function to not book more than 12 places
 @app.route('/purchase_places', methods=['POST'])
 def purchase_places():
     competition = [c for c in competitions if c['name'] == request.form['competition']][0]

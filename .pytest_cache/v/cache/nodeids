@@ -1,4 +1,10 @@
 [
+  "tests/unit_tests/test_book_a_maximum_of_12_places.py::TestMoreThanTwelvePoints::test_less_than_twelve",
+  "tests/unit_tests/test_book_a_maximum_of_12_places.py::TestMoreThanTwelvePoints::test_more_than_twelve_added",
+  "tests/unit_tests/test_book_a_maximum_of_12_places.py::TestMoreThanTwelvePoints::test_more_than_twelve_once",
+  "tests/unit_tests/test_book_a_maximum_of_12_places.py::test_less_than_twelve",
+  "tests/unit_tests/test_book_a_maximum_of_12_places.py::test_more_than_twelve_added",
+  "tests/unit_tests/test_book_a_maximum_of_12_places.py::test_more_than_twelve_once",
   "tests/unit_tests/test_check_available_points.py::test_available_points",
   "tests/unit_tests/test_check_available_points.py::test_not_available_points",
   "tests/unit_tests/test_check_email.py::test_known_email",

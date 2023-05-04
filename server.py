@@ -1,4 +1,3 @@
-import datetime
 import json
 from flask import Flask, render_template, request, redirect, flash, url_for
 
@@ -20,8 +19,6 @@ app.secret_key = 'something_special'
 
 competitions = load_competitions()
 clubs = load_clubs()
-now = datetime.datetime.now()
-current_date = now.strftime("%Y-%m-%d, %H:%M:%S")
 
 
 @app.route('/')
@@ -29,10 +26,19 @@ def index():
     return render_template('index.html')
 
 
+# Update show_summary function
 @app.route('/show_summary', methods=['POST'])
 def show_summary():
-    club = [club for club in clubs if club['email'] == request.form['email']][0]
-    return render_template('welcome.html', club=club, competitions=competitions, current_date=current_date)
+    try:
+        club = [club for club in clubs if club['email'] == request.form['email']][0]
+        return render_template('welcome.html', club=club, competitions=competitions)
+    except IndexError:
+        if request.form['email'] == '':
+            message = "Email is required. Please enter your correct email !"
+        else:
+            message = "The email " + request.form['email'] + " was not found. Please enter your correct email !"
+        flash(message)
+        return redirect(url_for('index')), 302
 
 
 @app.route('/book/<competition>/<club>')
@@ -43,20 +49,22 @@ def book(competition, club):
         return render_template('booking.html', club=found_club, competition=found_competition)
     else:
         flash("Something went wrong-please try again")
-        return render_template('welcome.html', club=club, competitions=competitions, current_date=current_date)
+        return render_template('welcome.html', club=club, competitions=competitions)
 
 
+# Update purchase_places function to book places with the allowed points
 @app.route('/purchase_places', methods=['POST'])
 def purchase_places():
     competition = [c for c in competitions if c['name'] == request.form['competition']][0]
     club = [c for c in clubs if c['name'] == request.form['club']][0]
     places_required = int(request.form['places'])
-    if competition['date'] < current_date:
-        flash("Sorry, this competition is over !")
-        return render_template('welcome.html', club=club, competitions=competitions, current_date=current_date)
-    competition['numberOfPlaces'] = int(competition['numberOfPlaces']) - places_required
+
+    if places_required > int(club['points']):
+        flash("You don't have enough points.")
+        return render_template('booking.html', club=club, competition=competition)
+
     flash('Great-booking complete!')
-    return render_template('welcome.html', club=club, competitions=competitions, current_date=current_date)
+    return render_template('welcome.html', club=club, competitions=competitions)
 
 
 # TODO: Add route for points display

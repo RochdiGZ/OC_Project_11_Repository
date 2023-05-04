@@ -19,11 +19,6 @@ app.secret_key = 'something_special'
 
 competitions = load_competitions()
 clubs = load_clubs()
-<<<<<<<<< Temporary merge branch 1
-now = datetime.datetime.now()
-current_date = now.strftime("%Y-%m-%d, %H:%M:%S")
-=========
->>>>>>>>> Temporary merge branch 2
 
 
 @app.route('/')
@@ -44,7 +39,6 @@ def show_summary():
             message = "The email " + request.form['email'] + " was not found. Please enter your correct email !"
         flash(message)
         return redirect(url_for('index')), 302
->>>>>>>>> Temporary merge branch 2
 
 
 @app.route('/book/<competition>/<club>')

@@ -19,6 +19,11 @@ app.secret_key = 'something_special'
 
 competitions = load_competitions()
 clubs = load_clubs()
+<<<<<<<<< Temporary merge branch 1
+now = datetime.datetime.now()
+current_date = now.strftime("%Y-%m-%d, %H:%M:%S")
+=========
+>>>>>>>>> Temporary merge branch 2
 
 
 @app.route('/')
@@ -39,6 +44,7 @@ def show_summary():
             message = "The email " + request.form['email'] + " was not found. Please enter your correct email !"
         flash(message)
         return redirect(url_for('index')), 302
+>>>>>>>>> Temporary merge branch 2
 
 
 @app.route('/book/<competition>/<club>')
@@ -52,12 +58,17 @@ def book(competition, club):
         return render_template('welcome.html', club=club, competitions=competitions)
 
 
+# Update purchase_places function to book places with the allowed points
 @app.route('/purchase_places', methods=['POST'])
 def purchase_places():
     competition = [c for c in competitions if c['name'] == request.form['competition']][0]
     club = [c for c in clubs if c['name'] == request.form['club']][0]
     places_required = int(request.form['places'])
-    competition['numberOfPlaces'] = int(competition['numberOfPlaces'])-places_required
+
+    if places_required > int(club['points']):
+        flash("You don't have enough points.")
+        return render_template('booking.html', club=club, competition=competition)
+
     flash('Great-booking complete!')
     return render_template('welcome.html', club=club, competitions=competitions)
 

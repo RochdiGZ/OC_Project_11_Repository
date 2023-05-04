@@ -52,7 +52,7 @@ def book(competition, club):
         return render_template('welcome.html', club=club, competitions=competitions)
 
 
-# Update purchase_places function to book places with the allowed points
+# Update purchase_places function to not book more than 12 places
 @app.route('/purchase_places', methods=['POST'])
 def purchase_places():
     competition = [c for c in competitions if c['name'] == request.form['competition']][0]
@@ -61,6 +61,9 @@ def purchase_places():
 
     if places_required > int(club['points']):
         flash("You don't have enough points.")
+        return render_template('booking.html', club=club, competition=competition)
+    elif places_required > 12:
+        flash("You can't book more than 12 places in a competition.")
         return render_template('booking.html', club=club, competition=competition)
 
     flash('Great-booking complete!')

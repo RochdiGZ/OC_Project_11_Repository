@@ -29,6 +29,7 @@ def index():
     return render_template('index.html')
 
 
+# Update show_summary function
 @app.route('/show_summary', methods=['POST'])
 def show_summary():
     try:

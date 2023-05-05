@@ -1,15 +1,6 @@
-# Created by https://www.toptal.com/developers/gitignore/api/Python
-# Edit at https://www.toptal.com/developers/gitignore?templates=Python
-
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
-
-# C extensions
-*.so
-
-# Distribution / packaging
+bin
+include
+lib
 .Python
 bin/
 build/
@@ -42,7 +33,6 @@ pip-log.txt
 pip-delete-this-directory.txt
 
 # Unit test / coverage reports
-tests/
 htmlcov/
 .tox/
 .nox/

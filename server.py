@@ -55,7 +55,7 @@ def book(competition, club):
         return render_template('welcome.html', club=club, competitions=competitions, current_date=current_date)
 
 
-# Update purchase_places function to book places only in a future competition
+# Update Purchase_places function to deduct points used when booking places
 @app.route('/purchase_places', methods=['POST'])
 def purchase_places():
     competition = [c for c in competitions if c['name'] == request.form['competition']][0]
@@ -73,7 +73,9 @@ def purchase_places():
             flash("You can't book more than 12 places in a competition.")
             return render_template('booking.html', club=club, competition=competition, current_date=current_date)
 
-    flash('Great-booking complete!')
+    competition['numberOfPlaces'] = int(competition['numberOfPlaces']) - places_required
+    club['points'] = int(club['points']) - places_required
+    flash(f"Great! You have booked {places_required} places for '{competition['name']}' competition.")
     return render_template('welcome.html', club=club, competitions=competitions, current_date=current_date)
 
 

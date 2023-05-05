@@ -18,7 +18,7 @@
                 <a href="{{ url_for('index') }}">Home</a>
             </li>
             <li>
-                <a href="#">Board</a>
+                <a href="{{ url_for('show_clubs_points') }}">Board</a>
             </li>
             <li>
                 <a href="{{ url_for('logout') }}">Logout</a>
@@ -31,7 +31,6 @@
     <form action="/purchase_places" method="post">
         <input type="hidden" name="club" value="{{ club['name'] }}">
         <input type="hidden" name="competition" value="{{ competition['name'] }}">
->>>>>>>>> Temporary merge branch 2
         <label for="places">How many places?</label><input type="number" name="places" id="places"/>
         <button type="submit">Book</button>
     </form>

@@ -79,7 +79,10 @@ def purchase_places():
     return render_template('welcome.html', club=club, competitions=competitions, current_date=current_date)
 
 
-# TODO: Add route for points display
+# TODO: Add route for points display : Create a new function to show available points of clubs
+@app.route('/clubs-points', methods=['GET'])
+def show_clubs_points():
+    return render_template('clubs_points.html', all_clubs=clubs)
 
 
 @app.route('/logout')

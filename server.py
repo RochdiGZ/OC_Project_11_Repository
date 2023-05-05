@@ -29,6 +29,7 @@ def index():
     return render_template('index.html')
 
 
+# Update show_summary function
 @app.route('/show_summary', methods=['POST'])
 def show_summary():
     try:
@@ -54,6 +55,7 @@ def book(competition, club):
         return render_template('welcome.html', club=club, competitions=competitions, current_date=current_date)
 
 
+# Update Purchase_places function to deduct points used when booking places
 @app.route('/purchase_places', methods=['POST'])
 def purchase_places():
     competition = [c for c in competitions if c['name'] == request.form['competition']][0]

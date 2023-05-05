@@ -15,7 +15,7 @@ nav {
     display: inline-flex;
     /* flex-direction: column; */
 }
-p, li, a, h1, h2, h3, thead, tbody {
+p, li, a, h1, h2, h3, thead, tbody, .error {
     margin-left: 10px;
     margin-right: 5px;
 }
@@ -47,10 +47,10 @@ h1, label, li, tbody {
 h2, input {
     color: green;
 }
-h3, button {
+h3, button, .error {
     color: red;
 }
-p, a, label, input, button, li, thead, tbody {
+p, a, label, input, button, li, thead, tbody, .error {
     font-weight: bold;
     font-size: 20;
 }

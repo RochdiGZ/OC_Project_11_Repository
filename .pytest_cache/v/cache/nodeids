@@ -13,5 +13,6 @@
   "tests/unit_tests/test_check_email.py::test_known_email",
   "tests/unit_tests/test_check_email.py::test_unknown_email",
   "tests/unit_tests/test_past_competition.py::test_book_closed_competition",
-  "tests/unit_tests/test_past_competition.py::test_book_open_competition"
+  "tests/unit_tests/test_past_competition.py::test_book_open_competition",
+  "tests/unit_tests/test_points_not_deducted.py::test_deduct_points"
 ]

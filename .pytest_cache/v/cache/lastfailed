@@ -1,5 +1,6 @@
 {
   "tests/unit_tests/test_book_a_maximum_of_12_places.py::test_less_than_twelve": true,
   "tests/unit_tests/test_book_a_maximum_of_12_places.py::test_more_than_twelve_once": true,
-  "tests/unit_tests/test_book_a_maximum_of_12_places.py::test_more_than_twelve_added": true
+  "tests/unit_tests/test_book_a_maximum_of_12_places.py::test_more_than_twelve_added": true,
+  "tests/unit_tests/test_points_board.py::test_points_update": true
 }

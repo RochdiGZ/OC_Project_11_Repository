@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,12 +7,12 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/responsive.css') }}" />
     <link rel="icon" href="{{ url_for('static', filename='images/logo.ico') }}">
-    <title>Booking for {{ competition['name'] }} || GUDLFT</title>
+    <title>Clubs points</title>
 </head>
 <body>
     <nav>
         <img class="logo" src="{{ url_for('static', filename='images/logo.png') }}" alt="GUDLFT Logo">
-        <h1>Welcome, {{ club['email'] }} </h1>
+        <h1>Board of available points for each club</h1>
 
         <ul class="nav_link">
             <li>
@@ -26,23 +27,29 @@
         </ul>
 
     </nav>
-    <h2>{{ competition['name'] }}</h2>
-    <h2>Places available: {{ competition['numberOfPlaces'] }}</h2>
-    <form action="/purchase_places" method="post">
-        <input type="hidden" name="club" value="{{ club['name'] }}">
-        <input type="hidden" name="competition" value="{{ competition['name'] }}">
-        <label for="places">How many places?</label>
-        <input type="number" min="1" value="0" name="places" id="places"/>
-        <button type="submit">Book</button>
-    </form>
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <ul>
-           {% for message in messages %}
-                <li class="error">{{ message }}</li>
-            {% endfor %}
-           </ul>
-        {% endif%}
-    {% endwith %}
+    <h1>
+        GÜDLFT organizes strength competitions in North America and Australia for clubs
+    </h1>
+    <h2>Clubs points</h2>
+    {% if all_clubs|length < 1 %}
+        <h3>Sorry! No clubs to display</h3>
+    {% else %}
+        <table>
+            <thead class="table_head">
+                <tr>
+                    <th>Club name</th>
+                    <th>Points available</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for club in all_clubs %}
+                    <tr>
+                        <td>{{ club['name'] }}</td>
+                        <td>{{ club['points'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
 </body>
 </html>

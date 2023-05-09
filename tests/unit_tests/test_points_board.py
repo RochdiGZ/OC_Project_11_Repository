@@ -18,8 +18,8 @@ club = [
 ]
 
 
-def test_points_update():
-    places_booked = 1
+def test_update_points():
+    places_booked = 5
 
     client.post(
         "/purchase_places",
@@ -30,6 +30,6 @@ def test_points_update():
         }
     )
 
-    result = client.get("/points-clubs")
-
-    assert result.status_code == 404
+    response = client.get("/clubs-points")
+    assert response.status_code == 200
+    assert str(int(club[0]["points"]) - places_booked) in response.data.decode()

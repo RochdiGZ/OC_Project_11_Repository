@@ -1,6 +1,18 @@
 [
+  "tests/integration_tests/test_app.py::TestApp::test_display_board",
+  "tests/integration_tests/test_app.py::TestApp::test_email",
+  "tests/integration_tests/test_app.py::TestApp::test_get_home",
+  "tests/integration_tests/test_app.py::TestApp::test_logout",
+  "tests/integration_tests/test_app.py::TestApp::test_points_update",
+  "tests/integration_tests/test_app.py::TestApp::test_update_points",
+  "tests/integration_tests/test_app.py::test_update_points",
   "tests/integration_tests/test_points_board.py::test_points_update",
+  "tests/integration_tests/test_update_points.py::TestUpdatePoints::test_display_board",
+  "tests/integration_tests/test_update_points.py::TestUpdatePoints::test_email",
+  "tests/integration_tests/test_update_points.py::TestUpdatePoints::test_get_home",
   "tests/integration_tests/test_update_points.py::TestUpdatePoints::test_points_update",
+  "tests/integration_tests/test_update_points.py::TestUpdatePoints::test_post_email",
+  "tests/integration_tests/test_update_points.py::TestUpdatePoints::test_purchase_places",
   "tests/unit_tests/test_book_a_maximum_of_12_places.py::TestMoreThanTwelvePoints::test_less_than_twelve",
   "tests/unit_tests/test_book_a_maximum_of_12_places.py::TestMoreThanTwelvePoints::test_more_than_twelve_added",
   "tests/unit_tests/test_book_a_maximum_of_12_places.py::TestMoreThanTwelvePoints::test_more_than_twelve_once",
@@ -17,5 +29,6 @@
   "tests/unit_tests/test_past_competition.py::test_book_closed_competition",
   "tests/unit_tests/test_past_competition.py::test_book_open_competition",
   "tests/unit_tests/test_points_board.py::test_points_update",
+  "tests/unit_tests/test_points_board.py::test_update_points",
   "tests/unit_tests/test_points_not_deducted.py::test_deduct_points"
 ]

@@ -3,7 +3,9 @@ import server
 
 class TestApp:
     client = server.app.test_client()
+
     competitions = server.load_competitions()
+
     clubs = server.load_clubs()
 
     def test_get_home(self):

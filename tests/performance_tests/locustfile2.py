@@ -21,6 +21,7 @@ clubs = [
 
 class TestRetrieveCompetitions(HttpUser):
     wait_time = between(1, 5)
+
     club = clubs[2]
 
     def on_start(self):

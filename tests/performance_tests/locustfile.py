@@ -39,7 +39,9 @@ clubs = [
 
 class TestUpdatePoints(HttpUser):
     wait_time = between(1, 2)
+
     competition = competitions[2]
+
     club = clubs[2]
 
     def on_start(self):

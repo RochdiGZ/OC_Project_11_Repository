@@ -31,4 +31,5 @@ def test_deduct_points():
     )
 
     assert result.status_code == 200
+
     assert int(club[0]["points"]) - places_booked >= 0

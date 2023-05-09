@@ -1,5 +1,4 @@
 [
-  "tests/integration_tests/test_points_board.py::test_points_update",
   "tests/unit_tests/test_book_a_maximum_of_12_places.py::TestMoreThanTwelvePoints::test_less_than_twelve",
   "tests/unit_tests/test_book_a_maximum_of_12_places.py::TestMoreThanTwelvePoints::test_more_than_twelve_added",
   "tests/unit_tests/test_book_a_maximum_of_12_places.py::TestMoreThanTwelvePoints::test_more_than_twelve_once",

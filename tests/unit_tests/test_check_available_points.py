@@ -34,7 +34,7 @@ def test_available_points():
 
 def test_not_available_points():
     client.post(
-        "/purchasePlaces",
+        "/purchase_places",
         data={
             "places": 30,
             "club": club[0]["name"],

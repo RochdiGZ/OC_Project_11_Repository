@@ -1,44 +1,45 @@
 import server
 
 
-class TestUpdatePoints:
+class TestApp:
     client = server.app.test_client()
+    competitions = server.load_competitions()
+    clubs = server.load_clubs()
 
-    competition = [
-        {
-            "name": "Winter Festival",
-            "date": "2023-12-16 14:00:00",
-            "numberOfPlaces": "36"
-        }
-    ]
+    def test_get_home(self):
+        assert self.client.get('/').status_code == 200
 
-    club = [
-        {
-            "name": "Simply Lift",
-            "email": "john@simplylift.co",
-            "points": "13"
-        }
-    ]
+        response = self.client.get('/')
+        assert b"Welcome to the GUDLFT Registration Portal!" in response.data
 
-    def setup_method(self):
-        server.competitions = self.competition
-        server.clubs = self.club
+    def test_email(self):
+        assert self.client.get('/').status_code == 200
+
+        for club in self.clubs:
+            assert self.client.get('/', data=club["email"]).status_code == 200
+
+    def test_display_board(self):
+        assert self.client.get('/').status_code == 200
+
+        assert self.client.get('/clubs-points').status_code == 200
 
     def test_points_update(self):
-        # club_points_before = int(self.club[0]["points"])
-        places_booked = 1
+        places_booked = 5
 
         self.client.post(
             "/purchase_places",
             data={
                 "places": places_booked,
-                "club": self.club[0]["name"],
-                "competition": self.competition[0]["name"]
+                "club": self.clubs[0]["name"],
+                "competition": self.competitions[0]["name"]
             }
         )
 
-        result = self.client.get("/club-points")
+        response = self.client.get("/clubs-points")
+        assert response.status_code == 200
+        assert str(int(self.clubs[0]["points"]) - places_booked) in response.data.decode()
 
-        assert result.status_code == 404
-        # assert f"<td>{self.club[0]['name']}</td>" in result.data.decode()
-        # assert f"<td>{club_points_before - places_booked}</td>" in result.data.decode()
+    def test_logout(self):
+        response = self.client.get('/logout')
+        assert response.status_code == 302
+        assert response.headers["Location"] == "/"

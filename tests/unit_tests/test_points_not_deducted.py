@@ -22,7 +22,7 @@ def test_deduct_points():
     places_booked = 5
 
     result = client.post(
-        "/purchasePlaces",
+        "/purchase_places",
         data={
             "places": places_booked,
             "club": club[0]["name"],
@@ -30,5 +30,5 @@ def test_deduct_points():
         }
     )
 
-    assert result.status_code == 404
+    assert result.status_code == 200
     assert int(club[0]["points"]) - places_booked >= 0
